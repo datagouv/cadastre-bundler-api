@@ -6,5 +6,20 @@
   "repository": "git@github.com:etalab/cadastre-bundler-api.git",
   "author": "Etalab Geo Team <geo@data.gouv.fr>",
   "license": "MIT",
-  "private": false
+  "private": false,
+  "scripts": {
+    "lint": "xo",
+    "test": "ava"
+  },
+  "devDependencies": {
+    "ava": "^0.24.0",
+    "xo": "^0.18.2"
+  },
+  "xo": {
+    "space": 2,
+    "semicolon": false
+  },
+  "engines": {
+    "node": ">= 8"
+  }
 }
