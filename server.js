@@ -2,9 +2,9 @@ const express = require('express')
 
 const app = express()
 
-app.get('/', (req, res) => {
-  res.send({message: 'hello world'})
-})
+app.use('/pci-vecteur', require('./lib/pci-vecteur'))
+app.use('/pci-image', require('./lib/pci-image'))
+app.use('/cadastre-etalab', require('./lib/cadastre-etalab'))
 
 const port = process.env.PORT || 5000
 
