@@ -13,6 +13,7 @@
     "test": "ava"
   },
   "dependencies": {
+    "content-disposition": "^0.5.2",
     "express": "^4.16.2",
     "glob": "^7.1.2",
     "lodash": "^4.17.4",
