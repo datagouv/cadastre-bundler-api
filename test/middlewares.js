@@ -5,7 +5,8 @@ const {validFormat} = require('../lib/middlewares')
 
 function makeAppWithFormat() {
   const app = express()
-  app.get('/:format', validFormat(['a', 'b']), (req, res) => res.send({hello: 'coucou'}))
+  app.param('format', validFormat(['a', 'b']))
+  app.get('/:format', (req, res) => res.send({hello: 'coucou'}))
   return app
 }
 
