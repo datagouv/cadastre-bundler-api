@@ -1,12 +1,15 @@
 {
   "name": "@etalab/cadastre-bundler-api",
-  "version": "0.1.0",
+  "version": "0.1.0-pre.0",
   "description": "API permettant de télécharger les données cadastrales",
   "main": "index.js",
   "repository": "git@github.com:etalab/cadastre-bundler-api.git",
   "author": "Etalab Geo Team <geo@data.gouv.fr>",
   "license": "MIT",
   "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "start": "node server",
     "lint": "xo",
