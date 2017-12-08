@@ -1,6 +1,9 @@
 const express = require('express')
+const cors = require('cors')
 
 const app = express()
+
+app.use(cors())
 
 app.use('/pci-vecteur', require('./lib/pci-vecteur'))
 app.use('/pci-image', require('./lib/pci-image'))

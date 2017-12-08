@@ -16,6 +16,7 @@
     "test": "ava"
   },
   "dependencies": {
+    "cors": "^2.8.4",
     "edigeo-reproject": "^0.1.1",
     "express": "^4.16.2",
     "glob": "^7.1.2",
