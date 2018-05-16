@@ -16,12 +16,17 @@
     "test": "ava"
   },
   "dependencies": {
+    "content-disposition": "^0.5.2",
     "cors": "^2.8.4",
     "dotenv": "^5.0.1",
     "express": "^4.16.2",
+    "geojson-stream": "^0.0.1",
+    "geojson2shp": "^0.1.1",
     "glob": "^7.1.2",
+    "is-stream": "^1.1.0",
     "lodash": "^4.17.4",
     "mkdirp": "^0.5.1",
+    "pumpify": "^1.5.0",
     "rimraf": "^2.6.2",
     "yazl": "^2.4.3"
   },
