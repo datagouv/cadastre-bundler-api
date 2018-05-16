@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "cors": "^2.8.4",
+    "dotenv": "^5.0.1",
     "express": "^4.16.2",
     "glob": "^7.1.2",
     "lodash": "^4.17.4",
