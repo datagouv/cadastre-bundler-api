@@ -1858,14 +1858,16 @@ geojson-stream@0.0.1, geojson-stream@^0.0.1:
     JSONStream "^1.0.0"
     through "^2.3.4"
 
-geojson2shp@^0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/geojson2shp/-/geojson2shp-0.1.1.tgz#b0869eadfdf8cb2483581bc800fa0006930e6c4a"
+geojson2shp@^0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/geojson2shp/-/geojson2shp-0.3.1.tgz#3e270d1a7fe94a5e3f53230206f72d815d466f8a"
   dependencies:
     epsg-index "^0.13.0"
     geojson-stream "^0.0.1"
     gunzip-stream "^1.0.1"
+    is-stream "^1.1.0"
     pump "^3.0.0"
+    pumpify "^1.5.1"
     reproject "^1.2.1"
     shp-write-stream "^2.0.0"
     yazl "^2.4.3"
@@ -3464,6 +3466,14 @@ pump@^3.0.0:
 pumpify@^1.5.0:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/pumpify/-/pumpify-1.5.0.tgz#30c905a26c88fa0074927af07256672b474b1c15"
+  dependencies:
+    duplexify "^3.6.0"
+    inherits "^2.0.3"
+    pump "^2.0.0"
+
+pumpify@^1.5.1:
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/pumpify/-/pumpify-1.5.1.tgz#36513be246ab27570b1a374a5ce278bfd74370ce"
   dependencies:
     duplexify "^3.6.0"
     inherits "^2.0.3"
