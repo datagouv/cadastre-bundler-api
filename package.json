@@ -16,6 +16,7 @@
     "test": "ava"
   },
   "dependencies": {
+    "@etalab/decoupage-administratif": "^3.0.0",
     "content-disposition": "^0.5.2",
     "cors": "^2.8.4",
     "dotenv": "^5.0.1",
