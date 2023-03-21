@@ -15,7 +15,7 @@ paths:
       - $ref: '#/components/parameters/formatPciVecteur'
       responses:
         200:
-          description: Liste de communes
+          description: ZIP du département dans le format indiqué.
           content:
             application/zip:
                schema:
@@ -71,6 +71,49 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  /pci-vecteur/communes:
+    get:
+      tags:
+      - PCI Vecteur
+      summary: Recherche des communes
+      parameters:
+        - in: query
+          name: format
+          required: true
+          schema:
+            type: string
+            description: Format des données en sortie
+            enum:
+            - edigeo
+            - edigeo-cc
+            - dxf
+            - dxf-cc
+        - in: query
+          name: insee_codes
+          required: true
+          style: form
+          explode: false
+          schema:
+            type: array
+            description: Liste des communes INSEE séparés par des virgules
+            items:
+              type: string
+            minItems: 1
+            maxItems: 300
+      responses:
+        200:
+          description: Liste de communes
+          content:
+            application/zip:
+               schema:
+                 type: string
+                 format: binary
+        404:
+          description: Erreur. Requête mal formée
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /pci-vecteur/epci/{codeEPCI}/{format}:
     get:
       tags:
@@ -79,6 +122,16 @@ paths:
       parameters:
       - $ref: '#/components/parameters/codeEPCI'
       - $ref: '#/components/parameters/formatPciVecteur'
+        - in: query
+          name: create_epci_dir
+          required: false
+          schema:
+            type: string
+            description: Création d'un répertoire du code EPCI à la racine du zip ou non
+            enum:
+            - true
+            - false
+      
       responses:
         200:
           description: Liste de communes
