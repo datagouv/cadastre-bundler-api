@@ -114,7 +114,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /pci-vecteur/epci/{codeEPCI}/{format}:
+  /pci-vecteur/epcis/{codeEPCI}/{format}:
     get:
       tags:
       - PCI Vecteur
@@ -236,7 +236,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /cadastre-etalab/epci/{codeEPCI}/{format}/{layer}:
+  /cadastre-etalab/epcis/{codeEPCI}/{format}/{layer}:
     get:
       tags:
       - Cadastre Etalab
