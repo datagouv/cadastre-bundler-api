@@ -118,23 +118,55 @@ paths:
     get:
       tags:
       - PCI Vecteur
-      summary: Recherche des communes
+      summary: Recherche des EPCI
       parameters:
       - $ref: '#/components/parameters/codeEPCI'
       - $ref: '#/components/parameters/formatPciVecteur'
-        - in: query
-          name: create_epci_dir
-          required: false
-          schema:
-            type: string
-            description: Création d'un répertoire du code EPCI à la racine du zip ou non
-            enum:
-            - true
-            - false
-      
+      responses:
+        200:
+          description: Liste des EPCI
+          content:
+            application/zip:
+               schema:
+                 type: string
+                 format: binary
+        404:
+          description: Erreur. Requête mal formée
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /pci-image/communes/{codeCommune}/tiff:
+    get:
+      tags:
+      - PCI Image
+      summary: Recherche des communes
+      parameters:
+      - $ref: '#/components/parameters/codeCommune'
       responses:
         200:
           description: Liste de communes
+          content:
+            application/zip:
+               schema:
+                 type: string
+                 format: binary
+        404:
+          description: Erreur. Requête mal formée
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /pci-image/epcis/{codeEPCI}/tiff:
+    get:
+      tags:
+      - PCI Image
+      summary: Recherche des EPCI
+      parameters:
+      - $ref: '#/components/parameters/codeEPCI'
+      responses:
+        200:
+          description: Liste des EPCI
           content:
             application/zip:
                schema:
@@ -236,18 +268,40 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  /cadastre-etalab/epcis/{codeEPCI}/shp/{layer}:
+    get:
+      tags:
+      - Cadastre Etalab
+      summary: Recherche des EPCI
+      parameters:
+      - $ref: '#/components/parameters/codeEPCI'
+      - $ref: '#/components/parameters/layerType'
+      responses:
+        200:
+          description: Liste des EPCI
+          content:
+            application/zip:
+               schema:
+                 type: string
+                 format: binary
+        404:
+          description: Erreur. Requête mal formée
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /cadastre-etalab/epcis/{codeEPCI}/{format}/{layer}:
     get:
       tags:
       - Cadastre Etalab
-      summary: Recherche des communes
+      summary: Recherche des EPCI
       parameters:
       - $ref: '#/components/parameters/codeEPCI'
       - $ref: '#/components/parameters/formatEtalabCadastre'
       - $ref: '#/components/parameters/layerType'
       responses:
         200:
-          description: Liste de communes
+          description: Liste des EPCI
           content:
             application/zip:
                schema:
