@@ -1,0 +1,403 @@
+openapi: 3.0.1
+info:
+  title: API bundler cadastre
+  version: "1.404"
+servers:
+- url: https://cadastre.data.gouv.fr/bundler
+paths:
+  /pci-vecteur/departements/{codeDepartement}/{format}:
+    get:
+      tags:
+      - PCI Vecteur
+      summary: Recherche des communes
+      parameters:
+      - $ref: '#/components/parameters/codeDepartement'
+      - $ref: '#/components/parameters/formatPciVecteur'
+      responses:
+        200:
+          description: ZIP du département dans le format indiqué.
+          content:
+            application/zip:
+               schema:
+                 type: string
+                 format: binary
+        404:
+          description: Erreur. Requête mal formée
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /pci-vecteur/feuilles/{codeFeuille}/{format}:
+    get:
+      tags:
+      - PCI Vecteur
+      summary: Recherche des communes
+      parameters:
+      - $ref: '#/components/parameters/codeFeuille'
+      - $ref: '#/components/parameters/formatPciVecteur'
+      responses:
+        200:
+          description: Liste de communes
+          content:
+            application/zip:
+               schema:
+                 type: string
+                 format: binary
+        404:
+          description: Erreur. Requête mal formée
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /pci-vecteur/communes/{codeCommune}/{format}:
+    get:
+      tags:
+      - PCI Vecteur
+      summary: Recherche des communes
+      parameters:
+      - $ref: '#/components/parameters/codeCommune'
+      - $ref: '#/components/parameters/formatPciVecteur'
+      responses:
+        200:
+          description: Liste de communes
+          content:
+            application/zip:
+               schema:
+                 type: string
+                 format: binary
+        404:
+          description: Erreur. Requête mal formée
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /pci-vecteur/communes:
+    get:
+      tags:
+      - PCI Vecteur
+      summary: Recherche des communes
+      parameters:
+        - in: query
+          name: format
+          required: true
+          schema:
+            type: string
+            description: Format des données en sortie
+            enum:
+            - edigeo
+            - edigeo-cc
+            - dxf
+            - dxf-cc
+        - in: query
+          name: insee_codes
+          required: true
+          style: form
+          explode: false
+          schema:
+            type: array
+            description: Liste des communes INSEE séparés par des virgules
+            items:
+              type: string
+            minItems: 1
+            maxItems: 300
+      responses:
+        200:
+          description: Liste de communes
+          content:
+            application/zip:
+               schema:
+                 type: string
+                 format: binary
+        404:
+          description: Erreur. Requête mal formée
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /pci-vecteur/epcis/{codeEPCI}/{format}:
+    get:
+      tags:
+      - PCI Vecteur
+      summary: Recherche des EPCI
+      parameters:
+      - $ref: '#/components/parameters/codeEPCI'
+      - $ref: '#/components/parameters/formatPciVecteur'
+      responses:
+        200:
+          description: Liste des EPCI
+          content:
+            application/zip:
+               schema:
+                 type: string
+                 format: binary
+        404:
+          description: Erreur. Requête mal formée
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /pci-image/communes/{codeCommune}/tiff:
+    get:
+      tags:
+      - PCI Image
+      summary: Recherche des communes
+      parameters:
+      - $ref: '#/components/parameters/codeCommune'
+      responses:
+        200:
+          description: Liste de communes
+          content:
+            application/zip:
+               schema:
+                 type: string
+                 format: binary
+        404:
+          description: Erreur. Requête mal formée
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /pci-image/epcis/{codeEPCI}/tiff:
+    get:
+      tags:
+      - PCI Image
+      summary: Recherche des EPCI
+      parameters:
+      - $ref: '#/components/parameters/codeEPCI'
+      responses:
+        200:
+          description: Liste des EPCI
+          content:
+            application/zip:
+               schema:
+                 type: string
+                 format: binary
+        404:
+          description: Erreur. Requête mal formée
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /cadastre-etalab/departements/{codeDepartement}/shp/{layer}:
+    get:
+      tags:
+      - Cadastre Etalab
+      summary: Recherche des communes
+      parameters:
+      - $ref: '#/components/parameters/codeDepartement'
+      - $ref: '#/components/parameters/layerType'
+      responses:
+        200:
+          description: Liste de communes
+          content:
+            application/zip:
+               schema:
+                 type: string
+                 format: binary
+        404:
+          description: Erreur. Requête mal formée
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /cadastre-etalab/departements/{codeDepartement}/{format}/{layer}:
+    get:
+      tags:
+      - Cadastre Etalab
+      summary: Recherche des communes
+      parameters:
+      - $ref: '#/components/parameters/codeDepartement'
+      - $ref: '#/components/parameters/formatEtalabCadastre'
+      - $ref: '#/components/parameters/layerType'
+      responses:
+        200:
+          description: Liste de communes
+          content:
+            application/zip:
+               schema:
+                 type: string
+                 format: binary
+        404:
+          description: Erreur. Requête mal formée
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /cadastre-etalab/communes/{codeCommune}/shp/{layer}:
+    get:
+      tags:
+      - Cadastre Etalab
+      summary: Recherche des communes
+      parameters:
+      - $ref: '#/components/parameters/codeCommune'
+      - $ref: '#/components/parameters/layerType'
+      responses:
+        200:
+          description: Liste de communes
+          content:
+            application/zip:
+               schema:
+                 type: string
+                 format: binary
+        404:
+          description: Erreur. Requête mal formée
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /cadastre-etalab/communes/{codeCommune}/{format}/{layer}:
+    get:
+      tags:
+      - Cadastre Etalab
+      summary: Recherche des communes
+      parameters:
+      - $ref: '#/components/parameters/codeCommune'
+      - $ref: '#/components/parameters/formatEtalabCadastre'
+      - $ref: '#/components/parameters/layerType'
+      responses:
+        200:
+          description: Liste de communes
+          content:
+            application/zip:
+               schema:
+                 type: string
+                 format: binary
+        404:
+          description: Erreur. Requête mal formée
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /cadastre-etalab/epcis/{codeEPCI}/shp/{layer}:
+    get:
+      tags:
+      - Cadastre Etalab
+      summary: Recherche des EPCI
+      parameters:
+      - $ref: '#/components/parameters/codeEPCI'
+      - $ref: '#/components/parameters/layerType'
+      responses:
+        200:
+          description: Liste des EPCI
+          content:
+            application/zip:
+               schema:
+                 type: string
+                 format: binary
+        404:
+          description: Erreur. Requête mal formée
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /cadastre-etalab/epcis/{codeEPCI}/{format}/{layer}:
+    get:
+      tags:
+      - Cadastre Etalab
+      summary: Recherche des EPCI
+      parameters:
+      - $ref: '#/components/parameters/codeEPCI'
+      - $ref: '#/components/parameters/formatEtalabCadastre'
+      - $ref: '#/components/parameters/layerType'
+      responses:
+        200:
+          description: Liste des EPCI
+          content:
+            application/zip:
+               schema:
+                 type: string
+                 format: binary
+        404:
+          description: Erreur. Requête mal formée
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Code HTTP de l'erreur
+        message:
+          type: string
+          description: Libellé de l'erreur
+    Commune:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Code INSEE de la commune
+        nom:
+          type: string
+          description: Nom de la commune
+  parameters:
+    formatEtalabCadastre:
+      name: format
+      in: path
+      description: Format de données pour les données Cadastre Etalab
+      required: true
+      schema:
+        type: string
+        enum:
+        - geojson
+        - geojson-gz
+        - shp
+    formatPciVecteur:
+      name: format
+      in: path
+      description: Format de données pour les données PCI Vecteur
+      required: true
+      schema:
+        type: string
+        enum:
+        - edigeo
+        - edigeo-cc
+        - dxf
+        - dxf-cc
+    layerType:
+      name: layer
+      in: path
+      description: Type de couche pour le Cadastre Etalab
+      required: true
+      schema:
+        type: string
+        enum:
+        - batiments
+        - communes
+        - feuilles
+        - parcelles
+        - sections
+        - lieux_dits
+        - subdivisions_fiscales
+        - prefixes_sections
+    codeDepartement:
+      name: codeDepartement
+      in: path
+      description: Code du département
+      required: true
+      schema:
+        type: string
+    codeFeuille:
+      name: codeFeuille
+      in: path
+      description: Code de la feuille
+      required: true
+      schema:
+        type: string
+    codeCommune:
+      name: codeCommune
+      in: path
+      description: Code de la commune
+      required: true
+      schema:
+        type: string
+    codeEPCI:
+      name: codeEPCI
+      in: path
+      description: Code de l’EPCI
+      required: true
+      schema:
+        type: string
