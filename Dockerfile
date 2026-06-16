@@ -32,14 +32,14 @@ COPY --from=builder --chown=nextjs:nodejs /app /app
 USER nextjs
 
 # Expose port
-EXPOSE 4000
+EXPOSE 3000
 
 # Add health check
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-  CMD node -e "require('http').get('http://localhost:4000', (res) => { process.exit(res.statusCode === 200 ? 0 : 1) })"
+  CMD node -e "require('http').get('http://localhost:3000', (res) => { process.exit(res.statusCode === 200 ? 0 : 1) })"
 
 ENV NODE_ENV=production
-ENV PORT=4000
+ENV PORT=3000
 ENV CADASTRE_DATA_BASEPATH=/data
 # Start the application
 CMD ["node", "server"]
